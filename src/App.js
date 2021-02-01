@@ -29,6 +29,7 @@ axios
 function App() {
   return (
     <div className="App">
+
     <div>
       <h1>Welcome to African Marketplace!</h1>
       <nav>
@@ -40,7 +41,6 @@ function App() {
       <div className= 'itemCard'>
       </div>
     </div>
-
     </div>
   );
 }
