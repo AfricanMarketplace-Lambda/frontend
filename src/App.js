@@ -13,10 +13,10 @@ export default function App() {
 
 function itemMaker(raw){
 
-  const data = raw.data
+  const data = raw
   return(
    <div>
-     <h3>{data.title}</h3>
+     <h3>{data.name}</h3>
      <p>{data.price}</p>
      <p>{data.description}</p>
    </div> 
@@ -47,13 +47,21 @@ const loginSubmit = evt => {
   
 }
 
+axios.post(`https://tt17-african-marketplace.herokuapp.com/api/items`,
+{
+  name: 'Kiwano',
+  description: 'commonly called the horned melon, spiked melon, jelly melon, or kiwano, is an annual vine in the cucumber and melon family, Cucurbitaceae. Its fruit has horn-like spines, hence the name "horned melon". Ripe fruit has orange skin and lime green, jelly-like flesh with a refreshingly fruity taste, and a texture similar to a passionfruit or pomegranate. ',
+  price: 1.96,
+})
+
 
 useEffect(() => {
 axios
-    .get(`https://tt17-african-marketplace.herokuapp.com/items`)
+    .get(`https://tt17-african-marketplace.herokuapp.com/api/items`)
     .then(res => {
       res.data.forEach((id) => document.querySelector('.itemCard').appendChild(itemMaker(id))
       )})
+    
      .catch(err => console.log(err))
 },[])
 
