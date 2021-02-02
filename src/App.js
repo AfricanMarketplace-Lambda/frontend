@@ -1,8 +1,11 @@
 
 import './App.css';
 import axios from 'axios'
-import React, { useEffect, useState }  from 'react'
-import Login from './Login'
+import React, { useEffect, useState }  from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import NavBar from './components/NavBar';
 
 
 export default function App() {
@@ -60,6 +63,7 @@ axios
     <div className="App">
     <div>
       <h1>Welcome to African Marketplace!</h1>
+      <NavBar />
       <nav>
         <button>Not a member? Sign Up</button>
         <button >Sign In</button> 
