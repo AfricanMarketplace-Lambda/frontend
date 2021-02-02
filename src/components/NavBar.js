@@ -5,6 +5,10 @@ const NavBar = () =>{
 
     return(
         <div className='navbar'>
+
+        <NavLink className= 'home' to= "/">
+           Home
+        </NavLink>
         
         <NavLink className='login' to='/login'>
             Login
