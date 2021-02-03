@@ -29,12 +29,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
+        isFetching: false,
       };
 
     case FETCH_ITEMS_FAIL:
       return {
         ...state,
-        error: "error in the reducer",
+        error: action.payload,
       };
 
     case ADD_ITEM_SUCCESS:

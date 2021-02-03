@@ -1,34 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
-export default function Register(props) {
+export default function Register() {
+    const [registerValues, setRegisterValues] = useState({
+        username: '', 
+        password: ''
+    });
 
-    const {onChange, values} = props
-
+    //HELPER FUNCTIONS
+    const register = (evt) =>{
+        evt.preventDefault();
+        axiosWithAuth()
+        .post('/api/auth/register', registerValues)
+        .then((res) =>{
+            window.localStorage.setItem('token', res.data)
+        })
+        .catch(err => {
+            console.log(err); 
+        })
+    }
+    
+    const onChange = (e) => {
+    setRegisterValues({
+          ...registerValues,
+          [e.target.name]: e.target.value 
+        })}
+    
 return (
  <div>
      <form
-     >
-
+     onSubmit= {register}>
     <input 
         type="text"            
-        value={values.username}
+        value={registerValues.username}
         onChange={onChange}
         name='username'
-        placeholder= "Username"/>
-    <input 
-        type="email"            
-        value={values.email}
-        onChange={onChange}
-        name='email'
-        placeholder= "Email"/>
+        placeholder= "Enter username to register"/>
     <input 
         type="text" 
-        placeholder= "Password"
+        placeholder= "Enter password to register"
         name='password'
-        value= {values.password}
+        value= {registerValues.password}
         onChange= {onChange}
         />
-    <button>Submit</button>
+    <button>Register</button>
     </form>
 </div>
 
