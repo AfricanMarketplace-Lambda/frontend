@@ -46,7 +46,7 @@ export const updateItem = (item) => (dispatch) =>{
 export const deleteItem = (item) => (dispatch) =>{
     axiosWithAuth().delete(`/api/items/${item.id}`, item)
     .then((res) =>{
-        dispatch({type:DELETE_ITEM_SUCCESS, payload: res.message})
+        dispatch({type:DELETE_ITEM_SUCCESS, payload: res.data})
     })
     // .catch((err) =>{
     //     dispatch({type: DELETE_ITEM_FAIL, payload: err.message})

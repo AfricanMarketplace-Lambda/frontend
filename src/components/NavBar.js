@@ -5,20 +5,20 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <NavLink className="home" to="/items">
-        Home
+      Home
       </NavLink>
 
-      <NavLink className="login" to="/login">
-        Login
-      </NavLink>
+    <NavLink className="login" to="/login">
+      Login
+    </NavLink>
 
-      <NavLink className="register" to="/register">
-        Register
-      </NavLink>
+    <NavLink className="register" to="/register">
+      Register
+    </NavLink>
 
-      <NavLink className="logout" to="/logout">
-        Logout
-      </NavLink>
+    <NavLink className="logout" to="/logout">
+      Logout
+    </NavLink>
     </div>
 
   );
