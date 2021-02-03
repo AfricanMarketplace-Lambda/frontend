@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 
-const initialLoginValues={
+const credentials={
     username: '',
     password: ''
 }
 
 
 export default function Login(props) {
-    const [loginValues, setLoginValues] = useState(initialLoginValues);
+    const [loginValues, setLoginValues] = useState(credentials);
     const { push } = useHistory();
 
     const {onChange, onSubmit, values} = props
@@ -44,7 +44,7 @@ return (
         value= {values.password}
         onChange= {onChange}
         />
-    <button>Submit</button>
+    <button>Login</button>
     </form>
 </div>
 

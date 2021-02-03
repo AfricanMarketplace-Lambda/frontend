@@ -88,7 +88,7 @@ axios
         <Register onChange= {onChange} values= {formValues}/>
       </Route>
 
-      <PrivateRoute exact path='logout' component={Logout} />
+      <PrivateRoute exact path='/logout' component={Logout} />
 
     </Switch>
 
