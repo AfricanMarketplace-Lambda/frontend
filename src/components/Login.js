@@ -8,13 +8,11 @@ const credentials={
     password: ''
 }
 
-
-export default function Login(props) {
+export default function Login() {
     const [loginValues, setLoginValues] = useState(credentials);
     const { push } = useHistory();
 
-    const {onChange, onSubmit, values} = props
-
+    //HELPER FUNCTIONS
     const login = (evt) =>{
         evt.preventDefault();
         axiosWithAuth().post('/api/auth', credentials)
@@ -24,24 +22,27 @@ export default function Login(props) {
         })
     }
     
-
-
-
+    const onChange = (e) => {
+        setLoginValues({
+          ...loginValues,
+          [e.target.name]: e.target.value 
+        })}
+    
 return (
  <div>
      <form
-     onSubmit= {onSubmit}>
+     onSubmit= {login}>
     <input 
         type="text"            
-        value={values.username}
+        value={loginValues.username}
         onChange={onChange}
         name='username'
-        placeholder= "Username"/>
+        placeholder= "Enter username to login"/>
     <input 
         type="text" 
-        placeholder= "Password"
+        placeholder= "Enter password to login"
         name='password'
-        value= {values.password}
+        value= {loginValues.password}
         onChange= {onChange}
         />
     <button>Login</button>

@@ -1,16 +1,12 @@
 import React from "react";
-import { NavLink, Route } from "react-router-dom";
-import Login from './Login';
-import Register from './Register'; 
-import Logout from './Logout'; 
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
-<>
     <div className="navbar">
-      {/* <NavLink className="home" to="/">
+      <NavLink className="home" to="/">
         Home
-      </NavLink> */}
+      </NavLink>
 
       <NavLink className="login" to="/login">
         Login
@@ -24,16 +20,7 @@ const NavBar = () => {
         Logout
       </NavLink>
     </div>
-    <Route exact path='/login'>
-    <Login />
-    </Route>
-    <Route path='/register'>
-    <Register />
-    </Route>
-    <Route path='/logout'>
-    <Logout />
-    </Route>
-</>
+
   );
 };
 
