@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
+import { addItem } from '../actions';
 
 const initialValues = {
     name: '', 
@@ -9,6 +11,7 @@ const initialValues = {
 
 const ItemsForm = () => {
 const [formValues, setFormValues] = useState(initialValues); 
+const { push } = useHistory();
 
 //Helper Functions 
 const onChange = (e) => {
@@ -19,6 +22,19 @@ const onChange = (e) => {
 };
 
 const onSubmit = (e) => {
+    e.preventDefault();
+    if(formValues.name && formValues.description && formValues.price && formValues.catergory_id){
+        addItem(formValues)
+        setFormValues({
+            name: '', 
+            description: '', 
+            price: '', 
+            catergory_id: ''
+        })
+        push();// will push to component with items listings
+    } else{
+        console.log('error in submitting form');
+    }
 };
 
     return (
@@ -28,7 +44,7 @@ const onSubmit = (e) => {
             <input
             name=''
             onChange={onChange}
-            value={}
+            value={formValues.name}
             />
             </label>
             <label>
@@ -36,7 +52,7 @@ const onSubmit = (e) => {
             <input
             name=''
             onChange={onChange}
-            value={}
+            value={formValues.description}
             />
             </label>
             <label>
@@ -44,11 +60,11 @@ const onSubmit = (e) => {
             <input
             name=''
             onChange={onChange}
-            value={}
+            value={formValues.price}
             />
             </label>
             <label>
-            <select onChange={onChange} value={values.category} name="category">
+            <select onChange={onChange} value={formValues.category} name="category">
             <option value="">- Select a category -</option>
           </select>
             </label>

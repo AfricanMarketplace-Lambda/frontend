@@ -1,8 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
+
+
+const initialLoginValues={
+    username: '',
+    password: ''
+}
+
 
 export default function Login(props) {
+    const [loginValues, setLoginValues] = useState(initialLoginValues);
+    const { push } = useHistory();
 
     const {onChange, onSubmit, values} = props
+
+    const login = (evt) =>{
+        evt.preventDefault();
+        axiosWithAuth().post('/api/auth', credentials)
+        .then((res) =>{
+            localStorage.setItem('token', res.data.token)
+            push('')//will go to page with listings of items
+        })
+    }
     
 
 
@@ -12,11 +32,11 @@ return (
      <form
      onSubmit= {onSubmit}>
     <input 
-        type="email"            
-        value={values.email}
+        type="text"            
+        value={values.username}
         onChange={onChange}
-        name='email'
-        placeholder= "Email"/>
+        name='username'
+        placeholder= "Username"/>
     <input 
         type="text" 
         placeholder= "Password"

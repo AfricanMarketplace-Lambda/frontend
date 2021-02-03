@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
+import Logout from './components/Logout';
 
 
 export default function App() {
@@ -86,6 +87,8 @@ axios
       <Route exact path= '/register'>
         <Register onChange= {onChange} values= {formValues}/>
       </Route>
+
+      <PrivateRoute exact path='logout' component={Logout} />
 
     </Switch>
 
