@@ -1,7 +1,3 @@
-//export const functionName = param => {
-//     return({type: "ACTION_NAME", payload: param});
-// }
-
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 export const FETCH_ITEMS_START = "FETCH_ITEMS_START";
@@ -23,7 +19,7 @@ export const getItems = () => (dispatch) => {
       dispatch({ type: FETCH_ITEMS_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      dispatch({ type: FETCH_ITEMS_FAIL, payload: err });
+      dispatch({ type: FETCH_ITEMS_FAIL, payload: err.message });
     });
 };
 

@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-
-const credentials={
-    username: '',
-    password: ''
-}
-
 export default function Login() {
-    const [loginValues, setLoginValues] = useState(credentials);
+    const [loginValues, setLoginValues] = useState({
+        username: '', 
+        password: ''
+    });
     const { push } = useHistory();
 
     //HELPER FUNCTIONS
     const login = (evt) =>{
         evt.preventDefault();
-        axiosWithAuth().post('/api/auth', credentials)
+        axiosWithAuth()
+        .post('/api/auth/login', loginValues)
         .then((res) =>{
-            localStorage.setItem('token', res.data.token)
-            push('')//will go to page with listings of items
+            console.log(res.data)
+            window.localStorage.setItem('token', res.data.token)
+            push('/items')//will go to page with listing of items
+        })
+        .catch(err => {
+            console.log(err); 
         })
     }
     
