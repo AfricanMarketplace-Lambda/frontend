@@ -17,6 +17,10 @@ const NavBar = () =>{
         <NavLink className='register' to='/register'>
             Register
         </NavLink>
+
+        <NavLink className='logout' to='/logout'>
+            Logout
+        </NavLink>
         
         </div>
     )
