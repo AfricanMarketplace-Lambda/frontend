@@ -1,8 +1,8 @@
 
 import './App.css';
 import axios from 'axios'
-import React, { useEffect, useState }  from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useEffect}  from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
@@ -24,30 +24,6 @@ function itemMaker(raw){
  )
 }
 
-const initialState = {
-  email: "",
-  password: "",
-  username: "",
-}
-
-const [formValues, setFormValues] = useState(initialState)
-
-const onChange = (evt) => {
-  const { name, value } = evt.target
-  setFormValues({
-    ...formValues,
-    [name]: value 
-  })}
-
-
-
-
-const loginSubmit = evt => {
-  evt.preventDefault()
-  console.log(formValues)
-  
-}
-
 axios.post(`https://tt17-african-marketplace.herokuapp.com/api/items`,
 {
   name: 'Kiwano',
@@ -67,8 +43,6 @@ axios
 },[])
 
 
-
-
   return (
     <div className="App">
     <div>
@@ -81,11 +55,11 @@ axios
     <Switch>
       
       <Route exact path= '/login'>
-         <Login onChange= {onChange} onSubmit= {loginSubmit} values= {formValues}/>
+         <Login/>
       </Route>
 
       <Route exact path= '/register'>
-        <Register onChange= {onChange} values= {formValues}/>
+        <Register />
       </Route>
 
       <PrivateRoute exact path='/logout' component={Logout} />
