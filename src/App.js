@@ -47,21 +47,21 @@ export default function App() {
   return (
     <div className="App">
     <div>
-      <h1>Welcome to African Marketplace!</h1>
-      <NavBar />
-    </div>
-    <Switch>
-    <Route path= '/items'>
-        <Items />
-      </Route>
-      <Route exact path= '/login'>
-         <Login/>
-      </Route>
-      <Route exact path= '/register'>
-        <Register />
-      </Route>
-     <Route component={Login}/>
-      <PrivateRoute exact path='/logout' component={Logout} />
+    <h1>Welcome to African Marketplace!</h1>
+    <NavBar />
+  </div>
+  <Switch>
+  <Route path= '/items'>
+      <Items />
+    </Route>
+    <Route exact path= '/login'>
+       <Login/>
+    </Route>
+    <Route exact path= '/register'>
+      <Register />
+    </Route>
+   <Route component={Login}/>
+    <PrivateRoute exact path='/logout' component={Logout} />
 
     </Switch>
 
