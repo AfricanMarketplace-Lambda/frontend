@@ -6,8 +6,8 @@ import {
   ADD_ITEM_FAIL,
   DELETE_ITEM_SUCCESS,
   DELETE_ITEM_FAIL,
-  // EDIT_ITEM_SUCCESS,
-  // EDIT_ITEM_FAIL,
+  EDIT_ITEM_SUCCESS,
+  EDIT_ITEM_FAIL,
 } from "../actions";
 
 export const initialState = {
@@ -62,21 +62,29 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
+      // action.payload: {id: 1, name: "Polished thang! ", description: "Valuable handcrafted stone.", price: 25, category_id: 1}
+      // name: action.payload.name, 
+      // description: action.payload.description, 
+      // price: action.payload.price, 
+      // category_id: action.payload.category_id
+      case EDIT_ITEM_SUCCESS:
+      return {
+        ...state, 
+        items: state.items.map(item => {
+          if (item.id === action.payload.id){
+            return action.payload;
+          } else{
+            return item;
+          }
+        })
+      }
 
-      // Will need to figure out how to do this
-      // case EDIT_ITEM_SUCCESS:
-      // return{
-      //   ...state,
-        
-      // };
-
-      // case EDIT_ITEM_FAIL:
-      // return{
-      //   ...state,
-      //   error: action.payload
-      // };
-
-
+      case EDIT_ITEM_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+      
     default:
       return state;
   }

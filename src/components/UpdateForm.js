@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios'; 
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { updateItem } from '../actions';
 import { connect } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -11,7 +12,7 @@ const initialItem = {
     catergory_id: ''
 }
 
-const UpdateForm = () =>{
+const UpdateForm = ({items}) =>{
     const [item, setItem] = useState(initialItem);
     let params = useParams();
     const { push } = useHistory();
@@ -37,7 +38,12 @@ const onChange = e => {
 const onSubmit = e => {
     e.preventDefault();
     //put request
-    updateItem();
+    axiosWithAuth()
+    .put(`api/items/${item.id}`, item)
+    .then(res => {
+        console.log(res.data)
+    })
+    // updateItem();
     push('/items')
 };
 
@@ -85,4 +91,4 @@ return {
 }
 }
 
-export default connect(mapStateToProps, {updateItem})(UpdateForm); 
+export default connect(mapStateToProps, {})(UpdateForm); 

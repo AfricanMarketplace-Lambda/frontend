@@ -34,8 +34,9 @@ export const addItem = (item) => (dispatch) =>{
 };
 
 export const updateItem = (item) => (dispatch) =>{
-    axiosWithAuth().put(`/api/items/${item.id}`, item)
+    axiosWithAuth().put(`api/items/${item.id}`, item)
     .then((res) =>{
+        console.log('in updateItem', res.data)
         dispatch({type:EDIT_ITEM_SUCCESS, payload: res.data})
     })
     .catch((err) =>{
