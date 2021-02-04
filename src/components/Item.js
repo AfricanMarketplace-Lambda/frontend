@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { useHistory} from 'react-router-dom';
+import { useHistory, useParams} from 'react-router-dom';
 import { deleteItem } from '../actions';
 
 const Item = ({item}) => {
@@ -9,6 +9,7 @@ const Item = ({item}) => {
     }
 
     const handleDeleteClick = () =>{
+        console.log('delete')
         deleteItem();
         push('/items')
     }
@@ -24,6 +25,7 @@ const Item = ({item}) => {
             </div>
         </div>
     )
-}
+};
+
 
 export default Item; 

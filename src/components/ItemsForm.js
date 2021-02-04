@@ -5,16 +5,16 @@ import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialValues = {
-    // id: Date.now(),
+    id: Date.now(),
     name: '', 
     description: '', 
     price: '', 
     catergory_id: ''
 }
 
-const ItemsForm = ({items}) => {
-
+const ItemsForm = () => {
 const [formValues, setFormValues] = useState(initialValues); 
+
 const { push } = useHistory();
 //Helper Functions 
 const onChange = (e) => {
@@ -28,8 +28,8 @@ const onSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth().post('/api/items', formValues)
     .then((res) =>{
-        console.log('ressss', res.data);
-
+        addItem(formValues)
+        setFormValues(initialValues)
         push('/items');
     })
     .catch((err) =>{
@@ -81,4 +81,4 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect( mapStateToProps, {}) (ItemsForm); 
+export default connect( mapStateToProps, {addItem}) (ItemsForm); 
