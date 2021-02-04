@@ -21,7 +21,7 @@ export default function App() {
       <Switch>
         <Route path="/update-items/:id" component={UpdateForm} />
         <Route path='/add-item' component={ItemForm} />
-        <Route path="/items" component={Items} />
+        <PrivateRoute path="/items" component={Items} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/logout" component={Logout} />

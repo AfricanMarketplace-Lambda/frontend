@@ -4,6 +4,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from "@material-ui/core/index";
+import axios from 'axios';
 
 const useStyles = makeStyles({
     root:{
@@ -16,22 +17,24 @@ const useStyles = makeStyles({
       },
   })
 
+const initialLoginValues ={
+    username: '',
+    password: ''
+}
+
 export default function Login() {
-    const [loginValues, setLoginValues] = useState({
-        username: '', 
-        password: ''
-    });
+    const [credentials, setCredentials] = useState(initialLoginValues);
     const { push } = useHistory();
     const classes = useStyles();
 
     //HELPER FUNCTIONS
-    const login = (evt) =>{
+    const loginSubmit = (evt) =>{
         evt.preventDefault();
-        axiosWithAuth()
-        .post('/api/auth/login', loginValues)
+        axios
+        .post('https://tt17-african-marketplace.herokuapp.com/api/auth/login', credentials)
         .then((res) =>{
-            console.log(res.data)
             window.localStorage.setItem('token', res.data.token)
+            setCredentials(initialLoginValues)
             push('/items')//will go to page with listing of items
         })
         .catch(err => {
@@ -40,17 +43,17 @@ export default function Login() {
     }
     
     const onChange = (e) => {
-        setLoginValues({
-          ...loginValues,
+        setCredentials({
+          ...credentials,
           [e.target.name]: e.target.value 
         })}
     
 return (
  <div>
-     <form noValidate autoComplete="off" onSubmit= {login}>
+     <form noValidate autoComplete="off" onSubmit= {loginSubmit}>
      <TextField className={classes.root} id="filled-basic" variant="filled"
         type="text"            
-        value={loginValues.username}
+        value={credentials.username}
         onChange={onChange}
         name='username'
         placeholder= "Enter username"/>
@@ -58,7 +61,7 @@ return (
         type="text" 
         placeholder= "Enter password"
         name='password'
-        value= {loginValues.password}
+        value= {credentials.password}
         onChange= {onChange}
         />
         <Button className={classes.login} variant="contained" color="default">Login</Button>

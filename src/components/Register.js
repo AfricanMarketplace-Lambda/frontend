@@ -15,7 +15,6 @@ const useStyles = makeStyles({
       },
   })
 
-
 export default function Register() {
     const [registerValues, setRegisterValues] = useState({
         username: '', 

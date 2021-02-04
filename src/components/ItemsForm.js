@@ -7,7 +7,9 @@ import { Button } from "@material-ui/core/index";
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 
+
 const initialValues = {
+    id: Date.now(),
     name: '', 
     description: '', 
     price: '', 
@@ -20,10 +22,9 @@ const useStyles = makeStyles({
       marginRight: 30
     },
   })
-
-const ItemsForm = ({items}) => {
-    console.log('hello', items)
+const ItemsForm = () => {
 const [formValues, setFormValues] = useState(initialValues); 
+
 const { push } = useHistory();
 const classes = useStyles();
 
@@ -37,18 +38,15 @@ const onChange = (e) => {
 
 const onSubmit = (e) => {
     e.preventDefault();
-    if(formValues.name && formValues.description && formValues.price && formValues.catergory_id){
-        addItem(formValues);
-        setFormValues({
-            name: '',
-            description: '',
-            price: '',
-            category_id: ''
-        })
-        push('/items')
-    } else {
-        console.log("Error")
-    }
+    axiosWithAuth().post('/api/items', formValues)
+    .then((res) =>{
+        addItem(formValues)
+        setFormValues(initialValues)
+        push('/items');
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
 };
 
     return (
