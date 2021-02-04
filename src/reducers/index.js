@@ -4,7 +4,7 @@ import {
   FETCH_ITEMS_START,
   ADD_ITEM_SUCCESS,
   ADD_ITEM_FAIL,
-  DELETE_ITEM
+  // DELETE_ITEM
 } from "../actions";
 
 export const initialState = {
@@ -47,12 +47,12 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
-      case DELETE_ITEM:
-      return{
-        ...state,
-        items: action.payload.filter((item) =>{
-          return(item.id !== action.payload.id)})
-      };
+      // case DELETE_ITEM:
+      // return{
+      //   ...state,
+      //   items: action.payload.filter((item) =>{
+      //     return(item.id !== action.payload.id)})
+      // };
 
       // action.payload: {id: 1, name: "Polished thang! ", description: "Valuable handcrafted stone.", price: 25, category_id: 1}
       // name: action.payload.name, 

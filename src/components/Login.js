@@ -49,7 +49,7 @@ export default function Login() {
     
 return (
  <div>
-     <form noValidate autoComplete="off" onSubmit= {loginSubmit}>
+     <form noValidate autoComplete="off">
      <TextField className={classes.root} id="filled-basic" variant="filled"
         type="text"            
         value={credentials.username}
@@ -63,7 +63,7 @@ return (
         value= {credentials.password}
         onChange= {onChange}
         />
-        <Button className={classes.login} variant="contained" color="default">Login</Button>
+        <Button className={classes.login} variant="contained" onClick={loginSubmit} color="default">Login</Button>
     </form>
 </div>
 
