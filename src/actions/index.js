@@ -1,4 +1,4 @@
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const FETCH_ITEMS_START = "FETCH_ITEMS_START";
 export const FETCH_ITEMS_SUCCESS = "FETCH_ITEMS_SUCCESS";
