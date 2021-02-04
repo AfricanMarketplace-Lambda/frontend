@@ -29,5 +29,3 @@ export default function App() {
     </div>
   );
 };
-
-// add PrivateRoute to Home (/items)

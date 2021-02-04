@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { addItem } from '../actions';
 import { connect } from 'react-redux';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 import { Button } from "@material-ui/core/index";
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';

@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios'; 
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-// import { connect } from 'react-redux';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 import { useHistory, useParams } from 'react-router-dom';
 import { Button } from "@material-ui/core/index";
 import { makeStyles } from '@material-ui/core/styles';

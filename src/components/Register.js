@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 import { Button } from "@material-ui/core/index";
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
