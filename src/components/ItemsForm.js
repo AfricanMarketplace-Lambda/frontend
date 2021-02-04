@@ -12,7 +12,6 @@ const initialValues = {
 const ItemsForm = () => {
 const [formValues, setFormValues] = useState(initialValues); 
 const { push } = useHistory();
-
 //Helper Functions 
 const onChange = (e) => {
     setFormValues({
@@ -66,6 +65,8 @@ const onSubmit = (e) => {
             <label>
             <select onChange={onChange} value={formValues.category} name="category">
             <option value="">- Select a category -</option>
+            <option value="home">Home Improvement</option>
+            <option value="decor">Decorations</option>
           </select>
             </label>
         <button>Add Item</button>
