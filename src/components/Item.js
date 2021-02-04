@@ -1,13 +1,10 @@
 import React from 'react'; 
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 const Item = ({item}) => {
-    console.log(item)
     const { push } = useHistory();
-    const { id } = useParams();
-
     const handleEditClick = () =>{
-        push(`item-edit/${id}`)
+        push(`/update-items/${item.id}`)
     }
 
     return (
