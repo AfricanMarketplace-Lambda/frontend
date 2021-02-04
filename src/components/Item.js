@@ -1,18 +1,23 @@
 import React from 'react'; 
-import { useHistory } from 'react-router-dom';
-import { deleteItem } from '../actions';
+import { useHistory, useParams } from 'react-router-dom';
+// import { deleteItem } from '../actions';
 import { Button } from "@material-ui/core/index";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
   
 const Item = ({item}) => {
+
+    console.log('itemComponent', item)
     const { push } = useHistory();
+
     const handleEditClick = () =>{
         push(`/update-items/${item.id}`)
     }
 
     const handleDeleteClick = () =>{
         console.log('delete')
-        deleteItem();
+        // deleteItem();
+        axiosWithAuth().delete(`https://tt17-african-marketplace.herokuapp.com/api/items/${item.id}`)
         push('/items')
     }
 

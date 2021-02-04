@@ -5,7 +5,7 @@ export const FETCH_ITEMS_SUCCESS = "FETCH_ITEMS_SUCCESS";
 export const FETCH_ITEMS_FAIL = "FETCH_ITEMS_FAIL";
 export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
 export const ADD_ITEM_FAIL = 'ADD_ITEM_FAIL';
-export const DELETE_ITEM = 'DELETE_ITEM';
+// export const DELETE_ITEM = 'DELETE_ITEM';
 
 export const getItems = () => (dispatch) => {
   dispatch({ type: FETCH_ITEMS_START });
@@ -30,12 +30,12 @@ export const addItem = (item) => (dispatch) =>{
 };
 
 
-export const deleteItem = (item) => (dispatch) =>{
-    axiosWithAuth().delete(`/api/items/${item.id}`, item)
-    .then((res) =>{   
-        dispatch({type:DELETE_ITEM, payload: res.message})
-    })
-    // .catch((err) =>{
-    //     dispatch({type: DELETE_ITEM_FAIL, payload: err.message})
-    // })
-};
+// export const deleteItem = (itemId) => (dispatch) =>{
+//     axiosWithAuth().delete(`/api/items/${itemId.id}`)
+//     .then((res) =>{   
+//         dispatch({type:DELETE_ITEM, payload: res.data})
+//     })
+//     // .catch((err) =>{
+//     //     dispatch({type: DELETE_ITEM_FAIL, payload: err.message})
+//     // })
+// };
