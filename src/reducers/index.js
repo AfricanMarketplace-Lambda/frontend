@@ -14,9 +14,14 @@ export const initialState = {
   isFetching: false,
   items: [],
   error: "",
+  user:{
+    username: '',
+    password: ''
+  }
 };
 
 const reducer = (state = initialState, action) => {
+  const Id = localStorage.getItem('id')
   switch (action.type) {
     case FETCH_ITEMS_START:
       return {

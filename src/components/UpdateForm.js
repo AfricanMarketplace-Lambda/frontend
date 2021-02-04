@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios'; 
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { updateItem } from '../actions';
 import { connect } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';

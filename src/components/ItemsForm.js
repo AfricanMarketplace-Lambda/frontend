@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { addItem } from '../actions';
 import { connect } from 'react-redux';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialValues = {
+    // id: Date.now(),
     name: '', 
     description: '', 
     price: '', 
@@ -12,7 +13,7 @@ const initialValues = {
 }
 
 const ItemsForm = ({items}) => {
-    console.log('hello', items)
+
 const [formValues, setFormValues] = useState(initialValues); 
 const { push } = useHistory();
 //Helper Functions 
@@ -25,18 +26,15 @@ const onChange = (e) => {
 
 const onSubmit = (e) => {
     e.preventDefault();
-    if(formValues.name && formValues.description && formValues.price && formValues.catergory_id){
-        addItem(formValues);
-        setFormValues({
-            name: '',
-            description: '',
-            price: '',
-            category_id: ''
-        })
-        push('/items')
-    } else {
-        console.log("Error")
-    }
+    axiosWithAuth().post('/api/items', formValues)
+    .then((res) =>{
+        console.log('ressss', res.data);
+
+        push('/items');
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
 };
 
     return (
@@ -83,4 +81,4 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect( mapStateToProps, {addItem}) (ItemsForm); 
+export default connect( mapStateToProps, {}) (ItemsForm); 
