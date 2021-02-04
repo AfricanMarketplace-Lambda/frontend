@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import { Button } from "@material-ui/core/index";
+import { TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    root:{
+      marginLeft: 30, 
+      marginTop: 15
+    },
+    register:{
+        marginLeft: 30, 
+        marginTop: 30
+      },
+  })
 
 export default function Register() {
     const [registerValues, setRegisterValues] = useState({
         username: '', 
         password: ''
     });
+    const classes = useStyles();
+
 
     //HELPER FUNCTIONS
     const register = (evt) =>{
@@ -28,22 +44,21 @@ export default function Register() {
     
 return (
  <div>
-     <form
-     onSubmit= {register}>
-    <input 
+     <form noValidate autoComplete="off" onSubmit= {register}>
+     <TextField className={classes.root} id="filled-basic" variant="filled"
         type="text"            
         value={registerValues.username}
         onChange={onChange}
         name='username'
-        placeholder= "Enter username to register"/>
-    <input 
+        placeholder= "Enter username"/>
+     <TextField className={classes.root} id="filled-basic" variant="filled"
         type="text" 
-        placeholder= "Enter password to register"
+        placeholder= "Enter password"
         name='password'
         value= {registerValues.password}
         onChange= {onChange}
         />
-    <button>Register</button>
+    <Button className={classes.register} variant="contained" color="default">Register</Button>
     </form>
 </div>
 

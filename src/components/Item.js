@@ -1,7 +1,9 @@
 import React from 'react'; 
 import { useHistory, useParams} from 'react-router-dom';
 import { deleteItem } from '../actions';
+import { Button } from "@material-ui/core/index";
 
+  
 const Item = ({item}) => {
     const { push } = useHistory();
     const handleEditClick = () =>{
@@ -15,13 +17,13 @@ const Item = ({item}) => {
     }
 
     return (
-        <div className="item-wrapper">
-            <h2>{item.name}</h2>
+        <div className="item-card">
+            <h3>{item.name}</h3>
             <p>Description: {item.description}</p>
             <p>Price:${item.price}</p>
             <div className='buttons'>
-                <button className='edit-btn' onClick={handleEditClick} >Edit Item</button>
-                <button className='delete-btn' onClick={handleDeleteClick}>Delete Item</button>
+            <Button color="primary" onClick={handleEditClick} >Edit Item</Button>
+            <Button color="primary" onClick={handleDeleteClick}>Delete Item</Button>
             </div>
         </div>
     )
