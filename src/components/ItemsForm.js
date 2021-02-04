@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { addItem } from '../actions';
+import { connect } from 'react-redux';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialValues = {
     name: '', 
@@ -9,7 +11,8 @@ const initialValues = {
     catergory_id: ''
 }
 
-const ItemsForm = () => {
+const ItemsForm = ({items}) => {
+    console.log('hello', items)
 const [formValues, setFormValues] = useState(initialValues); 
 const { push } = useHistory();
 //Helper Functions 
@@ -23,16 +26,16 @@ const onChange = (e) => {
 const onSubmit = (e) => {
     e.preventDefault();
     if(formValues.name && formValues.description && formValues.price && formValues.catergory_id){
-        addItem(formValues)
+        addItem(formValues);
         setFormValues({
-            name: '', 
-            description: '', 
-            price: '', 
-            catergory_id: ''
+            name: '',
+            description: '',
+            price: '',
+            category_id: ''
         })
-        push();// will push to component with items listings
-    } else{
-        console.log('error in submitting form');
+        push('/items')
+    } else {
+        console.log("Error")
     }
 };
 
@@ -41,7 +44,7 @@ const onSubmit = (e) => {
             <label>
             Name
             <input
-            name=''
+            name='name'
             onChange={onChange}
             value={formValues.name}
             />
@@ -49,7 +52,7 @@ const onSubmit = (e) => {
             <label>
             Description
             <input
-            name=''
+            name='description'
             onChange={onChange}
             value={formValues.description}
             />
@@ -57,13 +60,13 @@ const onSubmit = (e) => {
             <label>
             Price
             <input
-            name=''
+            name='price'
             onChange={onChange}
             value={formValues.price}
             />
             </label>
             <label>
-            <select onChange={onChange} value={formValues.category} name="category">
+            <select onChange={onChange} value={formValues.catergory_id} name="category">
             <option value="">- Select a category -</option>
             <option value="home">Home Improvement</option>
             <option value="decor">Decorations</option>
@@ -72,6 +75,12 @@ const onSubmit = (e) => {
         <button>Add Item</button>
         </form>
     )
+};
+
+const mapStateToProps = (state) =>{
+    return{
+        items: state.items 
+    }
 }
 
-export default ItemsForm; 
+export default connect( mapStateToProps, {addItem}) (ItemsForm); 

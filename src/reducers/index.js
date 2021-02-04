@@ -53,7 +53,8 @@ const reducer = (state = initialState, action) => {
       case DELETE_ITEM_SUCCESS:
       return{
         ...state,
-        items: action.payload.filter(item => item.id !== action.payload)
+        items: state.items.filter((item) =>{
+          return(item.id !== action.payload.id)})
       };
 
       case DELETE_ITEM_FAIL:
