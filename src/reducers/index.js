@@ -4,24 +4,16 @@ import {
   FETCH_ITEMS_START,
   ADD_ITEM_SUCCESS,
   ADD_ITEM_FAIL,
-  DELETE_ITEM_SUCCESS,
-  DELETE_ITEM_FAIL,
-  EDIT_ITEM_SUCCESS,
-  EDIT_ITEM_FAIL,
+  DELETE_ITEM
 } from "../actions";
 
 export const initialState = {
   isFetching: false,
   items: [],
   error: "",
-  user:{
-    username: '',
-    password: ''
-  }
 };
 
 const reducer = (state = initialState, action) => {
-  const Id = localStorage.getItem('id')
   switch (action.type) {
     case FETCH_ITEMS_START:
       return {
@@ -55,17 +47,11 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
-      case DELETE_ITEM_SUCCESS:
+      case DELETE_ITEM:
       return{
         ...state,
-        items: state.items.filter((item) =>{
+        items: action.payload.filter((item) =>{
           return(item.id !== action.payload.id)})
-      };
-
-      case DELETE_ITEM_FAIL:
-      return{
-        ...state,
-        error: action.payload
       };
 
       // action.payload: {id: 1, name: "Polished thang! ", description: "Valuable handcrafted stone.", price: 25, category_id: 1}
@@ -73,23 +59,23 @@ const reducer = (state = initialState, action) => {
       // description: action.payload.description, 
       // price: action.payload.price, 
       // category_id: action.payload.category_id
-      case EDIT_ITEM_SUCCESS:
-      return {
-        ...state, 
-        items: state.items.map(item => {
-          if (item.id === action.payload.id){
-            return action.payload;
-          } else{
-            return item;
-          }
-        })
-      }
+      // case EDIT_ITEM_SUCCESS:
+      // return {
+      //   ...state, 
+      //   items: state.items.map(item => {
+      //     if (item.id === action.payload.id){
+      //       return action.payload;
+      //     } else{
+      //       return item;
+      //     }
+      //   })
+      // }
 
-      case EDIT_ITEM_FAIL:
-      return {
-        ...state,
-        error: action.payload
-      };
+      // case EDIT_ITEM_FAIL:
+      // return {
+      //   ...state,
+      //   error: action.payload
+      // };
       
     default:
       return state;

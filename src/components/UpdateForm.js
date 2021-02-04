@@ -1,8 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios'; 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { updateItem } from '../actions';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 const initialItem = {
@@ -74,7 +73,7 @@ const onSubmit = e => {
             />
             </label>
             <label>
-            <select onChange={onChange} value={item.category} name="category">
+            <select onChange={onChange} value={item.catergory_id} name="category">
             <option value="">- Select a category -</option>
             <option value="home">Home Improvement</option>
             <option value="decor">Decorations</option>
@@ -85,10 +84,4 @@ const onSubmit = e => {
     )
 }
 
-const mapStateToProps = state => {
-return { 
-    items: state.items,
-}
-}
-
-export default connect(mapStateToProps, {})(UpdateForm); 
+export default UpdateForm; 
