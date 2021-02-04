@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
 import Logout from './components/Logout';
 import Items from './components/Items'; 
+import ItemForm from './components/ItemsForm';
 import UpdateForm from './components/UpdateForm';
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
       </div>
       <Switch>
         <Route path="/update-items/:id" component={UpdateForm} />
+        <Route path='/add-item' component={ItemForm} />
         <Route path="/items" component={Items} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
