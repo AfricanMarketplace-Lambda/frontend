@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { addItem } from '../actions';
 import { connect } from 'react-redux';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { Button } from "@material-ui/core/index";
+import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
 
 const initialValues = {
     name: '', 
@@ -11,10 +14,19 @@ const initialValues = {
     catergory_id: ''
 }
 
+const useStyles = makeStyles({
+    root:{
+      marginLeft: 30, 
+      marginRight: 30
+    },
+  })
+
 const ItemsForm = ({items}) => {
     console.log('hello', items)
 const [formValues, setFormValues] = useState(initialValues); 
 const { push } = useHistory();
+const classes = useStyles();
+
 //Helper Functions 
 const onChange = (e) => {
     setFormValues({
@@ -41,38 +53,27 @@ const onSubmit = (e) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label>
-            Name
-            <input
+ <TextField className={classes.root} id="standard-basic" label="Name" 
             name='name'
             onChange={onChange}
             value={formValues.name}
             />
-            </label>
-            <label>
-            Description
-            <input
+<TextField className={classes.root} id="standard-basic" label="Description"
             name='description'
             onChange={onChange}
             value={formValues.description}
             />
-            </label>
-            <label>
-            Price
-            <input
+            <TextField className={classes.root} id="standard-basic" label="Price"
             name='price'
             onChange={onChange}
             value={formValues.price}
             />
-            </label>
-            <label>
             <select onChange={onChange} value={formValues.catergory_id} name="category">
             <option value="">- Select a category -</option>
             <option value="home">Home Improvement</option>
             <option value="decor">Decorations</option>
           </select>
-            </label>
-        <button>Add Item</button>
+          <Button className={classes.root} variant="contained" color="default">Add Item</Button>
         </form>
     )
 };

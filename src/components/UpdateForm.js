@@ -4,6 +4,9 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import { updateItem } from '../actions';
 import { connect } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { Button } from "@material-ui/core/index";
+import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
 
 const initialItem = {
     name: '', 
@@ -12,10 +15,18 @@ const initialItem = {
     catergory_id: ''
 }
 
+const useStyles = makeStyles({
+    root:{
+      marginLeft: 30, 
+      marginRight: 30
+    },
+  })
+
 const UpdateForm = ({items}) =>{
     const [item, setItem] = useState(initialItem);
     let params = useParams();
     const { push } = useHistory();
+    const classes = useStyles();
 
     useEffect(()=> {
         axios.get(`https://tt17-african-marketplace.herokuapp.com/api/items/${params.id}`)
@@ -49,30 +60,21 @@ const onSubmit = e => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label>
-            Name
-            <input
+            <TextField className={classes.root} id="standard-basic" label="Name" 
             name='name'
             onChange={onChange}
             value={item.name}
             />
-            </label>
-            <label>
-            Description
-            <input
+            <TextField className={classes.root} id="standard-basic" label="Description" 
             name='description'
             onChange={onChange}
             value={item.description}
             />
-            </label>
-            <label>
-            Price
-            <input
+            <TextField className={classes.root} id="standard-basic" label="Price" 
             name='price'
             onChange={onChange}
             value={item.price}
             />
-            </label>
             <label>
             <select onChange={onChange} value={item.category} name="category">
             <option value="">- Select a category -</option>
@@ -80,7 +82,7 @@ const onSubmit = e => {
             <option value="decor">Decorations</option>
           </select>
             </label>
-        <button>Update Item</button>
+        <Button className={classes.root} variant="contained" color="default">Update Item</Button>
         </form>
     )
 }

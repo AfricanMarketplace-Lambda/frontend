@@ -13,19 +13,34 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
+}
+
+.App h1 {
+  font-family: 'Indie Flower', cursive;
+  font-size: 4em;
+  text-shadow: 2px 2px #64b4d1;
+}
+
+.items-wrapper h2 {
+  font-family: 'Indie Flower', cursive;
+  font-size: 2em;
+  text-shadow: 2px 2px #64b4d1;
+}
+
+.item-card {
+  border: 1px solid gray;
+  padding: 2em; 
+  width: 20vw;
+  border-radius: 2em; 
+}
+
+.items-card-container {
+display: flex; 
+align-items: center;
+flex-direction: row;
+justify-content: space-evenly;
 }
 
 @keyframes App-logo-spin {

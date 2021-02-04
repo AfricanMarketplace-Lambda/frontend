@@ -4,8 +4,19 @@ import { connect } from "react-redux";
 import Item from './Item'; 
 import { useHistory } from "react-router-dom";
 
+import { Button } from "@material-ui/core/index";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root:{
+    marginTop: 30
+  },
+})
+
 const Items = ({isFetching, items, error, getItems}) => {
   const { push } = useHistory();
+  const classes = useStyles();
+
   useEffect(() => {
     getItems();
   }, []);
@@ -26,13 +37,15 @@ const Items = ({isFetching, items, error, getItems}) => {
 
   return (
       <div className="items-wrapper">
-          <h1>In Season and In Stock!</h1>
-          <button onClick={handleAddClick}>Add an Item</button>
+          <h2>In Season and In Stock!</h2>
+          <div className="items-card-container">
           {items.map(item => {
             return(
-                <Item item={item} key={item.id}/>
-            )    
-          })}
+              <Item item={item} key={item.id}/>
+              )    
+            })}
+          </div>
+            <Button className={classes.root} variant="contained" color="primary"onClick={handleAddClick}>Add an Item</Button>
       </div>
   )
 };

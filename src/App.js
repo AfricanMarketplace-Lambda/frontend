@@ -15,7 +15,7 @@ export default function App() {
   return (
     <div className="App">
       <div>
-        <h1>Welcome to African Marketplace!</h1>
+        <h1 className="title">Welcome to African Marketplace!</h1>
         <NavBar />
       </div>
       <Switch>

@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button } from "@material-ui/core/index";
+
+const useStyles = makeStyles({
+    root:{
+      marginLeft: 30, 
+      marginTop: 15
+    },
+    login:{
+        marginLeft: 30, 
+        marginTop: 30
+      },
+  })
 
 export default function Login() {
     const [loginValues, setLoginValues] = useState({
@@ -8,6 +22,7 @@ export default function Login() {
         password: ''
     });
     const { push } = useHistory();
+    const classes = useStyles();
 
     //HELPER FUNCTIONS
     const login = (evt) =>{
@@ -32,22 +47,21 @@ export default function Login() {
     
 return (
  <div>
-     <form
-     onSubmit= {login}>
-    <input 
+     <form noValidate autoComplete="off" onSubmit= {login}>
+     <TextField className={classes.root} id="filled-basic" variant="filled"
         type="text"            
         value={loginValues.username}
         onChange={onChange}
         name='username'
-        placeholder= "Enter username to login"/>
-    <input 
+        placeholder= "Enter username"/>
+     <TextField className={classes.root} id="filled-basic" variant="filled"
         type="text" 
-        placeholder= "Enter password to login"
+        placeholder= "Enter password"
         name='password'
         value= {loginValues.password}
         onChange= {onChange}
         />
-    <button>Login</button>
+        <Button className={classes.login} variant="contained" color="default">Login</Button>
     </form>
 </div>
 
