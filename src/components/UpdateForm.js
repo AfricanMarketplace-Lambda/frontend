@@ -74,13 +74,13 @@ const onSubmit = e => {
             value={item.price}
             />
             <label>
-            <select onChange={onChange} value={item.catergory_id} name="category">
+            <select onChange={onChange} value={item.catergory} name="category">
             <option value="">- Select a category -</option>
             <option value="home">Home Improvement</option>
             <option value="decor">Decorations</option>
           </select>
             </label>
-        <Button className={classes.root} variant="contained" color="default">Update Item</Button>
+        <Button className={classes.root} variant="contained" color="default" >Update Item</Button>
         </form>
     )
 }
