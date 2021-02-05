@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 // import { deleteItem } from '../actions';
 import { Button } from "@material-ui/core/index";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
